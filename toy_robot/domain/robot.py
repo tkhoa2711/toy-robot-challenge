@@ -8,6 +8,9 @@ from toy_robot.domain.position import Position
 class Robot:
     position: Optional[Position]
 
+    def __init__(self):
+        self.position = None
+
     def has_been_placed(self) -> bool:
         return self.position is None
 

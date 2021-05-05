@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from toy_robot.domain.exception import InvalidPositionError
 from toy_robot.domain.position import Position, Facing
 from toy_robot.domain.robot import Robot
 
@@ -17,10 +18,14 @@ class Table:
     y: int
 
     def is_valid_position(self, position: Position) -> bool:
-        pass
+        return 0 <= position.x < self.x and 0 <= position.y < self.y
 
     def place(self, robot: Robot, x: int, y: int, facing: Facing) -> None:
-        pass
+        position = Position(x, y, facing)
+        if not self.is_valid_position(position):
+            raise InvalidPositionError
+
+        robot.position = position
 
     def move_forward(self, robot: Robot) -> None:
         pass
