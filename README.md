@@ -78,3 +78,8 @@ Activate the virtualenv, if not yet already, by executing `poetry shell`.
 ```sh
 pytest
 ```
+
+## Architecture Decision Records
+
+All the important architectural decisions made are recorded at `docs/arch/`. They follow the format described in this
+article https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.
