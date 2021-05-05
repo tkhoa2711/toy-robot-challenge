@@ -11,6 +11,8 @@ class Facing(Enum):
 
 @dataclass
 class Position:
+    # `x` and `y` represent the coordinates of the position on a table.
+    # See `Table` class for more details.
     x: int
     y: int
     facing: Facing
