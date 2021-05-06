@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import pytest
 
 from toy_robot.domain.exception import InvalidPositionError
@@ -79,7 +81,9 @@ def test_move_forward__moves_the_robot_in_its_facing_direction(current_position,
 ])
 def test_move_forward__raises_exception_when_the_next_position_is_off_the_table(current_position, table):
     robot = Robot()
-    robot.position = current_position
+    robot.position = deepcopy(current_position)
 
     with pytest.raises(InvalidPositionError):
         table.move_forward(robot)
+
+    assert robot.position == current_position

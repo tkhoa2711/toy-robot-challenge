@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import dataclass
 
 from toy_robot.domain.exception import InvalidPositionError, RobotHasNotBeenPlacedError
@@ -32,7 +33,7 @@ class Table:
             raise RobotHasNotBeenPlacedError
 
         current_facing = robot.position.facing
-        new_position = robot.position
+        new_position = deepcopy(robot.position)
 
         if current_facing == Direction.EAST:
             new_position.x += 1
