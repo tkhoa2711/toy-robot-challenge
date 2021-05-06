@@ -12,10 +12,10 @@ from enum import Enum, auto
 #         |
 #         S
 class Direction(Enum):
-    NORTH = auto()
-    SOUTH = auto()
-    EAST = auto()
-    WEST = auto()
+    NORTH = "NORTH"
+    SOUTH = "SOUTH"
+    EAST = "EAST"
+    WEST = "WEST"
 
     def get_left(self) -> Direction:
         return DIRECTIONS[(DIRECTIONS.index(self) + 1) % 4]

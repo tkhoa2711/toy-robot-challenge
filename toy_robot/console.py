@@ -1,11 +1,39 @@
+import re
+
+from toy_robot.domain.exception import InvalidPositionError
+from toy_robot.domain.position import Direction
 from toy_robot.state import new_session
 
 
 def start_program() -> None:
-    session = new_session()
+    state = new_session()
 
     while True:
-        # TODO: receive input from user
+        try:
+            user_input = input("Please enter a command: ")
+            user_input = user_input.strip().upper()
+            if user_input == "LEFT":
+                state.table.turn_left(state.robot)
+            elif user_input == "RIGHT":
+                state.table.turn_right(state.robot)
+            elif user_input == "MOVE":
+                state.table.move_forward(state.robot)
+            elif matches := re.match(r"PLACE (?P<x>\d),(?P<y>\d),(?P<facing>\w+)", user_input):
+                input_dict = matches.groupdict()
 
-        # TODO: translate user input to action
-        pass
+                x = int(input_dict["x"])
+                y = int(input_dict["y"])
+                facing = Direction[input_dict["facing"]]
+
+                state.table.place(state.robot, x, y, facing)
+            elif user_input == "REPORT":
+                print(state.robot)
+            else:
+                print("I didn't understand that! Could you please try again?")
+        except InvalidPositionError:
+            print("Ignored the command since it is an invalid move")
+        except KeyboardInterrupt:
+            print("See you later")
+            return
+        except Exception as e:
+            print(f"Unknown error: {e}")
