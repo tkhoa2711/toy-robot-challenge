@@ -79,6 +79,12 @@ Activate the virtualenv, if not yet already, by executing `poetry shell`.
 pytest
 ```
 
+Or if you don't want to install anything locally:
+
+```sh
+docker-compose up test
+```
+
 ## Architecture Decision Records
 
 All the important architectural decisions made are recorded at `docs/arch/`. They follow the format described in this
