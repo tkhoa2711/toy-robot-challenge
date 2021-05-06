@@ -46,3 +46,58 @@ def test_place__raises_exception_when_position_is_invalid(table):
 
     with pytest.raises(InvalidPositionError):
         table.place(robot, x, y, facing)
+
+
+@pytest.mark.parametrize("current_position, new_position", [
+    [Position(0, 0, Facing.EAST), Position(1, 0, Facing.EAST)],
+    [Position(0, 0, Facing.NORTH), Position(0, 1, Facing.NORTH)],
+    [Position(4, 0, Facing.WEST), Position(3, 0, Facing.WEST)],
+    [Position(4, 0, Facing.NORTH), Position(4, 1, Facing.NORTH)],
+    [Position(0, 4, Facing.EAST), Position(1, 4, Facing.EAST)],
+    [Position(0, 4, Facing.SOUTH), Position(0, 3, Facing.SOUTH)],
+    [Position(4, 4, Facing.WEST), Position(3, 4, Facing.WEST)],
+    [Position(4, 4, Facing.SOUTH), Position(4, 3, Facing.SOUTH)],
+])
+def test_move_forward__moves_the_robot_in_its_facing_direction(current_position, new_position, table):
+    robot = Robot()
+    robot.position = current_position
+
+    table.move_forward(robot)
+
+    assert robot.position == new_position
+
+
+@pytest.mark.parametrize("current_position", [
+    Position(0, 0, Facing.WEST),
+    Position(0, 0, Facing.SOUTH),
+    Position(4, 0, Facing.EAST),
+    Position(4, 0, Facing.SOUTH),
+    Position(0, 4, Facing.WEST),
+    Position(0, 4, Facing.NORTH),
+    Position(4, 4, Facing.EAST),
+    Position(4, 4, Facing.NORTH),
+])
+def test_move_forward__raises_exception_when_the_next_position_is_off_the_table(current_position, table):
+    robot = Robot()
+    robot.position = current_position
+
+    with pytest.raises(InvalidPositionError):
+        table.move_forward(robot)
+
+
+def test_turn_left__only_changes_facing_direction(table):
+    robot = Robot()
+    robot.position = Position(3, 2, Facing.SOUTH)
+
+    table.turn_left(robot)
+
+    assert robot.position == Position(3, 2, Facing.EAST)
+
+
+def test_turn_right__only_changes_facing_direction(table):
+    robot = Robot()
+    robot.position = Position(3, 2, Facing.SOUTH)
+
+    table.turn_right(robot)
+
+    assert robot.position == Position(3, 2, Facing.WEST)

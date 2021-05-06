@@ -28,10 +28,27 @@ class Table:
         robot.position = position
 
     def move_forward(self, robot: Robot) -> None:
-        pass
+        current_facing = robot.position.facing
+        new_position = robot.position
 
-    def turn_left(self, robot: Robot) -> None:
-        pass
+        if current_facing == Facing.EAST:
+            new_position.x += 1
+        elif current_facing == Facing.WEST:
+            new_position.x -= 1
+        elif current_facing == Facing.NORTH:
+            new_position.y += 1
+        elif current_facing == Facing.SOUTH:
+            new_position.y -= 1
 
-    def turn_right(self, robot: Robot) -> None:
-        pass
+        if not self.is_valid_position(new_position):
+            raise InvalidPositionError
+
+        robot.position = new_position
+
+    @staticmethod
+    def turn_left(robot: Robot) -> None:
+        robot.position.facing = robot.position.facing.get_left()
+
+    @staticmethod
+    def turn_right(robot: Robot) -> None:
+        robot.position.facing = robot.position.facing.get_right()
