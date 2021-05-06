@@ -74,6 +74,13 @@ System requirements:
 Install all dependencies with `poetry install`. It will also create a virtualenv for us to work on this project.
 Activate the virtualenv, if not yet already, by executing `poetry shell`.
 
+You can also execute the program using Docker. If so you can build the images locally first before moving to the
+following sections. The images only need to be rebuilt if the dependencies change.
+
+```sh
+docker-compose build
+```
+
 ## Run tests
 
 ```sh

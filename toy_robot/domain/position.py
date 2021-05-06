@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from enum import Enum, auto
+from enum import Enum
 
 
 #         N
@@ -25,6 +25,7 @@ class Direction(Enum):
 
 
 DIRECTIONS = (Direction.EAST, Direction.NORTH, Direction.WEST, Direction.SOUTH)
+
 
 @dataclass
 class Position:

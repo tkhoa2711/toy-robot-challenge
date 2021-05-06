@@ -21,7 +21,7 @@ def test_to_left(current_facing: Direction, want: Direction):
     [Direction.WEST, Direction.NORTH],
     [Direction.NORTH, Direction.EAST],
 ])
-def test_to_left(current_facing: Direction, want: Direction):
+def test_to_right(current_facing: Direction, want: Direction):
     got = current_facing.get_right()
 
     assert got == want
