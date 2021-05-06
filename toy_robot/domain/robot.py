@@ -14,5 +14,5 @@ class Robot:
     def has_been_placed(self) -> bool:
         return self.position is None
 
-    def report(self) -> None:
-        pass
+    def report(self) -> str:
+        return repr(self.position)
