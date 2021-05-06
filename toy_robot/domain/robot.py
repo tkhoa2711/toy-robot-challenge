@@ -12,7 +12,7 @@ class Robot:
         self.position = None
 
     def has_been_placed(self) -> bool:
-        return self.position is None
+        return self.position is not None
 
     def turn_left(self) -> None:
         self.position.facing = self.position.facing.get_left()
