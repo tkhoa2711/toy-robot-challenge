@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from toy_robot.domain.exception import InvalidPositionError
+from toy_robot.domain.exception import InvalidPositionError, RobotHasNotBeenPlacedError
 from toy_robot.domain.position import Position, Direction
 from toy_robot.domain.robot import Robot
 
@@ -28,6 +28,9 @@ class Table:
         robot.position = position
 
     def move_forward(self, robot: Robot) -> None:
+        if not robot.has_been_placed():
+            raise RobotHasNotBeenPlacedError
+
         current_facing = robot.position.facing
         new_position = robot.position
 

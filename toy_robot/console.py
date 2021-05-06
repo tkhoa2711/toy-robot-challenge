@@ -1,7 +1,7 @@
 import re
 
 from toy_robot import action
-from toy_robot.domain.exception import InvalidPositionError
+from toy_robot.domain.exception import InvalidPositionError, RobotHasNotBeenPlacedError
 from toy_robot.domain.position import Direction
 
 
@@ -30,7 +30,7 @@ def start_program() -> None:
                 print(action.report())
             else:
                 print("I didn't understand that! Could you please try again?")
-        except InvalidPositionError:
+        except (InvalidPositionError, RobotHasNotBeenPlacedError):
             print("Ignored the command since it is an invalid move")
         except KeyboardInterrupt:
             print("\nSee you later")

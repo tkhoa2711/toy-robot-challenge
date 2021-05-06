@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from toy_robot.domain.exception import RobotHasNotBeenPlacedError
 from toy_robot.domain.position import Position
 
 
@@ -15,10 +16,19 @@ class Robot:
         return self.position is not None
 
     def turn_left(self) -> None:
+        if not self.has_been_placed():
+            raise RobotHasNotBeenPlacedError
+
         self.position.facing = self.position.facing.get_left()
 
     def turn_right(self) -> None:
+        if not self.has_been_placed():
+            raise RobotHasNotBeenPlacedError
+
         self.position.facing = self.position.facing.get_right()
 
     def report(self) -> str:
+        if not self.has_been_placed():
+            raise RobotHasNotBeenPlacedError
+
         return repr(self.position)
