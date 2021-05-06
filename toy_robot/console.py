@@ -33,7 +33,7 @@ def start_program() -> None:
         except InvalidPositionError:
             print("Ignored the command since it is an invalid move")
         except KeyboardInterrupt:
-            print("See you later")
+            print("\nSee you later")
             return
         except Exception as e:
             print(f"Unknown error: {e}")
