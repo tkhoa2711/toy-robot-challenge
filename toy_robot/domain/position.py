@@ -11,20 +11,20 @@ from enum import Enum, auto
 #         |
 #         |
 #         S
-class Facing(Enum):
+class Direction(Enum):
     NORTH = auto()
     SOUTH = auto()
     EAST = auto()
     WEST = auto()
 
-    def get_left(self) -> Facing:
-        return FACINGS[(FACINGS.index(self) + 1) % 4]
+    def get_left(self) -> Direction:
+        return DIRECTIONS[(DIRECTIONS.index(self) + 1) % 4]
 
-    def get_right(self) -> Facing:
-        return FACINGS[FACINGS.index(self) - 1]
+    def get_right(self) -> Direction:
+        return DIRECTIONS[DIRECTIONS.index(self) - 1]
 
 
-FACINGS = (Facing.EAST, Facing.NORTH, Facing.WEST, Facing.SOUTH)
+DIRECTIONS = (Direction.EAST, Direction.NORTH, Direction.WEST, Direction.SOUTH)
 
 @dataclass
 class Position:
@@ -32,4 +32,4 @@ class Position:
     # See `Table` class for more details.
     x: int
     y: int
-    facing: Facing
+    facing: Direction

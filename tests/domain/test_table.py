@@ -1,7 +1,7 @@
 import pytest
 
 from toy_robot.domain.exception import InvalidPositionError
-from toy_robot.domain.position import Position, Facing
+from toy_robot.domain.position import Position, Direction
 from toy_robot.domain.robot import Robot
 from toy_robot.domain.table import Table
 
@@ -31,7 +31,7 @@ def test_is_valid_position__returns_expected_result(x, y, want, table):
 
 def test_place__sets_the_correct_position_for_the_robot(table):
     robot = Robot()
-    x, y, facing = 2, 3, Facing.EAST
+    x, y, facing = 2, 3, Direction.EAST
 
     table.place(robot, x, y, facing)
 
@@ -42,21 +42,21 @@ def test_place__sets_the_correct_position_for_the_robot(table):
 
 def test_place__raises_exception_when_position_is_invalid(table):
     robot = Robot()
-    x, y, facing = -1, 3, Facing.SOUTH
+    x, y, facing = -1, 3, Direction.SOUTH
 
     with pytest.raises(InvalidPositionError):
         table.place(robot, x, y, facing)
 
 
 @pytest.mark.parametrize("current_position, new_position", [
-    [Position(0, 0, Facing.EAST), Position(1, 0, Facing.EAST)],
-    [Position(0, 0, Facing.NORTH), Position(0, 1, Facing.NORTH)],
-    [Position(4, 0, Facing.WEST), Position(3, 0, Facing.WEST)],
-    [Position(4, 0, Facing.NORTH), Position(4, 1, Facing.NORTH)],
-    [Position(0, 4, Facing.EAST), Position(1, 4, Facing.EAST)],
-    [Position(0, 4, Facing.SOUTH), Position(0, 3, Facing.SOUTH)],
-    [Position(4, 4, Facing.WEST), Position(3, 4, Facing.WEST)],
-    [Position(4, 4, Facing.SOUTH), Position(4, 3, Facing.SOUTH)],
+    [Position(0, 0, Direction.EAST), Position(1, 0, Direction.EAST)],
+    [Position(0, 0, Direction.NORTH), Position(0, 1, Direction.NORTH)],
+    [Position(4, 0, Direction.WEST), Position(3, 0, Direction.WEST)],
+    [Position(4, 0, Direction.NORTH), Position(4, 1, Direction.NORTH)],
+    [Position(0, 4, Direction.EAST), Position(1, 4, Direction.EAST)],
+    [Position(0, 4, Direction.SOUTH), Position(0, 3, Direction.SOUTH)],
+    [Position(4, 4, Direction.WEST), Position(3, 4, Direction.WEST)],
+    [Position(4, 4, Direction.SOUTH), Position(4, 3, Direction.SOUTH)],
 ])
 def test_move_forward__moves_the_robot_in_its_facing_direction(current_position, new_position, table):
     robot = Robot()
@@ -68,14 +68,14 @@ def test_move_forward__moves_the_robot_in_its_facing_direction(current_position,
 
 
 @pytest.mark.parametrize("current_position", [
-    Position(0, 0, Facing.WEST),
-    Position(0, 0, Facing.SOUTH),
-    Position(4, 0, Facing.EAST),
-    Position(4, 0, Facing.SOUTH),
-    Position(0, 4, Facing.WEST),
-    Position(0, 4, Facing.NORTH),
-    Position(4, 4, Facing.EAST),
-    Position(4, 4, Facing.NORTH),
+    Position(0, 0, Direction.WEST),
+    Position(0, 0, Direction.SOUTH),
+    Position(4, 0, Direction.EAST),
+    Position(4, 0, Direction.SOUTH),
+    Position(0, 4, Direction.WEST),
+    Position(0, 4, Direction.NORTH),
+    Position(4, 4, Direction.EAST),
+    Position(4, 4, Direction.NORTH),
 ])
 def test_move_forward__raises_exception_when_the_next_position_is_off_the_table(current_position, table):
     robot = Robot()
@@ -87,17 +87,17 @@ def test_move_forward__raises_exception_when_the_next_position_is_off_the_table(
 
 def test_turn_left__only_changes_facing_direction(table):
     robot = Robot()
-    robot.position = Position(3, 2, Facing.SOUTH)
+    robot.position = Position(3, 2, Direction.SOUTH)
 
     table.turn_left(robot)
 
-    assert robot.position == Position(3, 2, Facing.EAST)
+    assert robot.position == Position(3, 2, Direction.EAST)
 
 
 def test_turn_right__only_changes_facing_direction(table):
     robot = Robot()
-    robot.position = Position(3, 2, Facing.SOUTH)
+    robot.position = Position(3, 2, Direction.SOUTH)
 
     table.turn_right(robot)
 
-    assert robot.position == Position(3, 2, Facing.WEST)
+    assert robot.position == Position(3, 2, Direction.WEST)

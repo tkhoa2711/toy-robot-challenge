@@ -1,27 +1,27 @@
 import pytest
 
-from toy_robot.domain.position import Facing
+from toy_robot.domain.position import Direction
 
 
 @pytest.mark.parametrize("current_facing, want", [
-    [Facing.EAST, Facing.NORTH],
-    [Facing.NORTH, Facing.WEST],
-    [Facing.WEST, Facing.SOUTH],
-    [Facing.SOUTH, Facing.EAST],
+    [Direction.EAST, Direction.NORTH],
+    [Direction.NORTH, Direction.WEST],
+    [Direction.WEST, Direction.SOUTH],
+    [Direction.SOUTH, Direction.EAST],
 ])
-def test_to_left(current_facing: Facing, want: Facing):
+def test_to_left(current_facing: Direction, want: Direction):
     got = current_facing.get_left()
 
     assert got == want
 
 
 @pytest.mark.parametrize("current_facing, want", [
-    [Facing.EAST, Facing.SOUTH],
-    [Facing.SOUTH, Facing.WEST],
-    [Facing.WEST, Facing.NORTH],
-    [Facing.NORTH, Facing.EAST],
+    [Direction.EAST, Direction.SOUTH],
+    [Direction.SOUTH, Direction.WEST],
+    [Direction.WEST, Direction.NORTH],
+    [Direction.NORTH, Direction.EAST],
 ])
-def test_to_left(current_facing: Facing, want: Facing):
+def test_to_left(current_facing: Direction, want: Direction):
     got = current_facing.get_right()
 
     assert got == want
