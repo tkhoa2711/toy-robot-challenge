@@ -82,8 +82,22 @@ pytest
 Or if you don't want to install anything locally:
 
 ```sh
-docker-compose up test
+docker-compose run test
 ```
+
+## Run the program
+
+```sh
+python -m toy_robot.main
+```
+
+Or using Docker:
+
+```sh
+docker-compose run program
+```
+
+`Ctrl-C` to exit it when you're done.
 
 ## Architecture Decision Records
 
