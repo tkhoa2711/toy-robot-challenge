@@ -83,21 +83,3 @@ def test_move_forward__raises_exception_when_the_next_position_is_off_the_table(
 
     with pytest.raises(InvalidPositionError):
         table.move_forward(robot)
-
-
-def test_turn_left__only_changes_facing_direction(table):
-    robot = Robot()
-    robot.position = Position(3, 2, Direction.SOUTH)
-
-    table.turn_left(robot)
-
-    assert robot.position == Position(3, 2, Direction.EAST)
-
-
-def test_turn_right__only_changes_facing_direction(table):
-    robot = Robot()
-    robot.position = Position(3, 2, Direction.SOUTH)
-
-    table.turn_right(robot)
-
-    assert robot.position == Position(3, 2, Direction.WEST)

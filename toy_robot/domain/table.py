@@ -44,11 +44,3 @@ class Table:
             raise InvalidPositionError
 
         robot.position = new_position
-
-    @staticmethod
-    def turn_left(robot: Robot) -> None:
-        robot.position.facing = robot.position.facing.get_left()
-
-    @staticmethod
-    def turn_right(robot: Robot) -> None:
-        robot.position.facing = robot.position.facing.get_right()

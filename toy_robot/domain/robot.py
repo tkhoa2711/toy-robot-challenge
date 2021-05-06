@@ -14,5 +14,11 @@ class Robot:
     def has_been_placed(self) -> bool:
         return self.position is None
 
+    def turn_left(self) -> None:
+        self.position.facing = self.position.facing.get_left()
+
+    def turn_right(self) -> None:
+        self.position.facing = self.position.facing.get_right()
+
     def report(self) -> str:
         return repr(self.position)

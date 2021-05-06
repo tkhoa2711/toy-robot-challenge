@@ -14,11 +14,11 @@ def start_new_session() -> None:
 
 
 def turn_left() -> None:
-    _STATE.table.turn_left(_STATE.robot)
+    _STATE.robot.turn_left()
 
 
 def turn_right() -> None:
-    _STATE.table.turn_right(_STATE.robot)
+    _STATE.robot.turn_right()
 
 
 def move() -> None:
