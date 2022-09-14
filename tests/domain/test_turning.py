@@ -1,4 +1,8 @@
-from toy_robot.domain.position import Direction, Position
+from copy import deepcopy
+import hypothesis.strategies as st
+
+from hypothesis import given
+from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
 
 # NOTE: The actual logic of how turning works are tested as part of
@@ -6,19 +10,27 @@ from toy_robot.domain.robot import Robot
 # its location i.e. (x, y) coordinates.
 
 
-def test_turn_left__only_changes_facing_direction():
+@given(st.integers(), st.integers(), st.sampled_from(DIRECTIONS))
+def test_turn_left__only_changes_facing_direction(x: int, y: int, direction: Direction):
     robot = Robot()
-    robot.position = Position(3, 2, Direction.SOUTH)
+    original_position = Position(x, y, direction)
+    robot.position = deepcopy(original_position)
 
     robot.turn_left()
 
-    assert robot.position == Position(3, 2, Direction.EAST)
+    assert robot.position.x == original_position.x
+    assert robot.position.y == original_position.y
+    assert robot.position.facing != original_position.facing
 
 
-def test_turn_right__only_changes_facing_direction():
+@given(st.integers(), st.integers(), st.sampled_from(DIRECTIONS))
+def test_turn_right__only_changes_facing_direction(x: int, y: int, direction: Direction):
     robot = Robot()
-    robot.position = Position(3, 2, Direction.SOUTH)
+    original_position = Position(x, y, direction)
+    robot.position = deepcopy(original_position)
 
     robot.turn_right()
 
-    assert robot.position == Position(3, 2, Direction.WEST)
+    assert robot.position.x == original_position.x
+    assert robot.position.y == original_position.y
+    assert robot.position.facing != original_position.facing

@@ -1,11 +1,18 @@
-from copy import deepcopy
-
+import hypothesis.strategies as st
 import pytest
 
+from copy import deepcopy
+from hypothesis import given
 from toy_robot.domain.exception import InvalidPositionError
-from toy_robot.domain.position import Position, Direction
+from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
 from toy_robot.domain.table import Table
+
+
+class TABLE_SIZE:
+    """The size of the table used for testing"""
+    X = 5
+    Y = 5
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -31,15 +38,15 @@ def test_is_valid_position__returns_expected_result(x, y, want, table):
     assert got == want
 
 
-def test_place__sets_the_correct_position_for_the_robot(table):
+@given(x=st.integers(0, TABLE_SIZE.X-1), y=st.integers(0, TABLE_SIZE.Y-1), direction=st.sampled_from(DIRECTIONS))
+def test_place__sets_the_correct_position_for_the_robot(table: Table, x: int, y: int, direction: Direction):
     robot = Robot()
-    x, y, facing = 2, 3, Direction.EAST
 
-    table.place(robot, x, y, facing)
+    table.place(robot, x, y, direction)
 
     assert robot.position.x == x
     assert robot.position.y == y
-    assert robot.position.facing == facing
+    assert robot.position.facing == direction
 
 
 def test_place__raises_exception_when_position_is_invalid(table):

@@ -1,6 +1,8 @@
+import hypothesis.strategies as st
 import pytest
 
-from toy_robot.domain.position import Direction, Position
+from hypothesis import given
+from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
 
 
@@ -15,3 +17,13 @@ def test_robot_has_been_placed(position, want):
     got = robot.has_been_placed()
 
     assert got == want
+
+
+@given(st.integers(), st.integers(), st.sampled_from(DIRECTIONS))
+def test_robot_has_been_placed__random_position(x: int, y: int, direction: Direction):
+    robot = Robot()
+    robot.position = Position(x, y, direction)
+
+    got = robot.has_been_placed()
+
+    assert got == True

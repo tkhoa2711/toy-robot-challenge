@@ -1,14 +1,15 @@
 # Toy Robot Challenge
+
 [![Test](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml/badge.svg)](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml)
 
 Welcome to the Toy Robot Challenge!
 
 ## Problem Description
 
-* The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units
-* There are no other obstructions on the table surface
-* The robot is free to roam around the surface of the table, but must be prevented from falling to destruction
-* Any movement that would result in the robot falling from the table must be prevented, however further valid movement
+- The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units
+- There are no other obstructions on the table surface
+- The robot is free to roam around the surface of the table, but must be prevented from falling to destruction
+- Any movement that would result in the robot falling from the table must be prevented, however further valid movement
   commands must still be allowed
 
 Create an application that can read in commands of the following form -
@@ -68,8 +69,8 @@ Any move that would cause the robot to fall must be ignored.
 
 System requirements:
 
-- Python 3.8.7
-- poetry
+- Python 3.8.7 or above
+- [poetry](https://python-poetry.org/)
 
 Install all dependencies with `poetry install`. It will also create a virtualenv for us to work on this project.
 Activate the virtualenv, if not yet already, by executing `poetry shell`.

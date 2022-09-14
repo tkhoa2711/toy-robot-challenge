@@ -5,3 +5,6 @@
 .pytest_cache
 *.egg-info
 **/__pycache__
+
+# python packages
+.hypothesis/
