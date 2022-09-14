@@ -20,5 +20,7 @@ jobs:
           poetry export -f requirements.txt --dev | pip install -r /dev/stdin
       - name: Run lint
         run: flake8 .
+      - name: Run code format check
+        run: black --check --verbose .
       - name: Run tests
         run: pytest
