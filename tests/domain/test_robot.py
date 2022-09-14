@@ -24,6 +24,4 @@ def test_robot_has_been_placed__random_position(x: int, y: int, direction: Direc
     robot = Robot()
     robot.position = Position(x, y, direction)
 
-    got = robot.has_been_placed()
-
-    assert got == True
+    assert robot.has_been_placed()
