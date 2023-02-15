@@ -2,7 +2,8 @@ version: "3.8"
 
 services:
   test:
-    build: .
+    build:
+      target: dev
     working_dir: /app
     command:
       - sh
@@ -14,8 +15,9 @@ services:
     volumes:
       - .:/app
 
-  program:
-    build: .
+  app:
+    build:
+      target: prod
     stdin_open: true
     tty: true
     working_dir: /app

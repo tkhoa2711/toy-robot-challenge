@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:experimental
 
 ARG PYTHON_VERSION=3.8.7
-FROM python:${PYTHON_VERSION}-slim-buster
+FROM python:${PYTHON_VERSION}-slim-buster AS base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
@@ -19,8 +19,21 @@ RUN python -m pip install "poetry==$POETRY_VERSION" && \
 
 # Install python package dependencies
 COPY poetry.lock pyproject.toml ./
-# TODO: remove --dev for production image
+
+# Dev image used for local development and testing
+FROM base as dev
+
 RUN poetry export -f requirements.txt --dev | pip install -r /dev/stdin
+
+# Install source code
+COPY ./ app/
+
+CMD ["bash"]
+
+# Production-ready image
+FROM base as prod
+
+RUN poetry export -f requirements.txt | pip install -r /dev/stdin
 
 # Install source code
 COPY ./ app/

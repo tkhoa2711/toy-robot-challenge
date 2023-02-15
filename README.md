@@ -103,7 +103,7 @@ python -m toy_robot.main
 Or using Docker:
 
 ```sh
-docker-compose run program
+docker-compose run app
 ```
 
 `Ctrl-C` to exit it when you're done.
