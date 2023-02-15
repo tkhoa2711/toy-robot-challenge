@@ -1,7 +1,8 @@
 from copy import deepcopy
-import hypothesis.strategies as st
 
+import hypothesis.strategies as st
 from hypothesis import given
+
 from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
 

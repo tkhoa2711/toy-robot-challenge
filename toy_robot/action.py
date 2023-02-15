@@ -3,7 +3,6 @@ from typing import Optional
 from toy_robot.domain.position import Direction
 from toy_robot.state import State
 
-
 _STATE: Optional[State] = None
 
 

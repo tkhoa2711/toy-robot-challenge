@@ -11,6 +11,7 @@ services:
       - |
         flake8 .
         black --check --verbose .
+        isort --check --diff .
     volumes:
       - .:/app
 

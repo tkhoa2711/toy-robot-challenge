@@ -2,7 +2,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 
 from toy_robot.domain.exception import InvalidPositionError, RobotHasNotBeenPlacedError
-from toy_robot.domain.position import Position, Direction
+from toy_robot.domain.position import Direction, Position
 from toy_robot.domain.robot import Robot
 
 

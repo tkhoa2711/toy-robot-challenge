@@ -1,7 +1,7 @@
 import hypothesis.strategies as st
 import pytest
-
 from hypothesis import given
+
 from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
 

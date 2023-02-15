@@ -1,8 +1,9 @@
+from copy import deepcopy
+
 import hypothesis.strategies as st
 import pytest
-
-from copy import deepcopy
 from hypothesis import given
+
 from toy_robot.domain.exception import InvalidPositionError
 from toy_robot.domain.position import DIRECTIONS, Direction, Position
 from toy_robot.domain.robot import Robot
