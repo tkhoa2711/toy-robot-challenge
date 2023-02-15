@@ -21,6 +21,6 @@ jobs:
       - name: Build docker images
         run: docker compose build
       - name: Run lint
-        run: docker compose run test
+        run: docker compose run lint
       - name: Run tests
         run: docker compose run test

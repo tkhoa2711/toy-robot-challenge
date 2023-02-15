@@ -79,7 +79,7 @@ You can also execute the program using Docker. If so you can build the images lo
 following sections. The images only need to be rebuilt if the dependencies change.
 
 ```sh
-docker-compose build
+docker compose build
 ```
 
 ## Run tests
@@ -91,7 +91,7 @@ pytest
 Or if you don't want to install anything locally:
 
 ```sh
-docker-compose run test
+docker compose run test
 ```
 
 ## Run the program
@@ -103,7 +103,7 @@ python -m toy_robot.main
 Or using Docker:
 
 ```sh
-docker-compose run app
+docker compose run app
 ```
 
 `Ctrl-C` to exit it when you're done.
