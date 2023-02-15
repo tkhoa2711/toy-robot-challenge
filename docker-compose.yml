@@ -4,10 +4,13 @@ services:
   test:
     build: .
     working_dir: /app
-    command: bash -c "
+    command:
+      - sh
+      - -ec
+      - |
+        pytest -cov
         flake8 .
-        && pytest --cov
-      "
+        black --check .
     volumes:
       - .:/app
 
