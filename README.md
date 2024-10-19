@@ -1,6 +1,6 @@
 # Toy Robot Challenge
 
-[![Test](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml/badge.svg)](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml)
+[![Test](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/tkhoa2711/toy-robot-challenge/actions/workflows/test.yml)
 
 Welcome to the Toy Robot Challenge!
 
